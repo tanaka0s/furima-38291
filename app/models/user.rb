@@ -4,11 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         validates :encrypted_password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/ }
+         validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/, message: "is invalid.Include both letters and numbers" }
          validates :nickname,        presence: true
-         validates :first_name,      presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥]+\z/}
-         validates :last_name,       presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥]+\z/}
-         validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/}
-         validates :last_name_kana,  presence: true, format: { with: /\A[ァ-ヶー－]+\z/}
+         validates :first_name,      presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥]+\z/, message: "is invalid.Input full-width characters"}
+         validates :last_name,       presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥]+\z/, message: "is invalid.Input full-width characters"}
+         validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input full-width katakana characters"}
+         validates :last_name_kana,  presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input full-width katakana characters"}
          validates :birth_date,      presence: true
 end
