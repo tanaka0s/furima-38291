@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-end
+  end
 
   describe '商品出品' do
     context '商品を出品できる場合' do
@@ -88,7 +88,7 @@ end
         expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
       it '販売価格が¥9,999,999より多い場合は出品できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
