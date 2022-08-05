@@ -1,6 +1,5 @@
-const { inputChangeSelector } = require("@rails/ujs");
-
 window.addEventListener('load', () => {
+  if ( document.getElementById('item-price')!= null){
   const priceInput = document.getElementById("item-price");
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
@@ -10,4 +9,5 @@ window.addEventListener('load', () => {
     const profitValue = document.getElementById("profit");
     profitValue.innerHTML = Math.floor(inputValue - tax);
   })
+  };
 });
