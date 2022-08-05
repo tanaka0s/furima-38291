@@ -7,13 +7,11 @@ class OrdersController < ApplicationController
     if @item.order.present?
       redirect_to root_path
     else
-      @item = Item.find(params[:item_id])
       @order_purchaser = OrderPurchaser.new
     end
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_purchaser = OrderPurchaser.new(order_purchaser_params)
     if @order_purchaser.valid?
       pay_item

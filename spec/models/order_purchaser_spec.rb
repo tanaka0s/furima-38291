@@ -73,6 +73,11 @@ RSpec.describe OrderPurchaser, type: :model do
         @order_purchaser.valid?
         expect(@order_purchaser.errors.full_messages).to include('Phone number is too short')
       end
+      it '電話番号が12桁以上では購入できない' do
+        @order_purchaser.phone_number = '012345678912'
+        @order_purchaser.valid?
+        expect(@order_purchaser.errors.full_messages).to include('Phone number is invalid. Input only number')
+      end
       it '電話番号に半角数値以外が含まれている場合は購入できない' do
         @order_purchaser.phone_number = '090-123-4567'
         @order_purchaser.valid?
